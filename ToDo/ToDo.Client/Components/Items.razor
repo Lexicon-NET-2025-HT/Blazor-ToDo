@@ -1,6 +1,6 @@
 ﻿<ul class="list-group mt-4">
 
-    @foreach (var item in _toDoItems)
+    @foreach (var item in ToDoItems)
     {
        <Item ToDoItem="item" />
     }
@@ -8,10 +8,19 @@
 </ul>
 
 @code {
-    private List<ToDoItem> _toDoItems =
-        [
-            new(){Text = "Buy bananas", Completed = true, Created = DateTime.Now.AddDays(-2)},
-            new(){Text = "Walk the dog"},
-            new(){Text = "Coffe",  Created = DateTime.Now.AddDays(-1).AddHours(5)},
-        ];
+
+    [Parameter]
+    public List<ToDoItem> ToDoItems { get; set; } = [];
+
+   
+
+    // protected override void OnParametersSet()
+    // {
+    //     base.OnParametersSet();
+    // }
+
+    // protected override void OnAfterRender(bool firstRender)
+    // {
+    //     base.OnAfterRender(firstRender);
+    //}
 }
