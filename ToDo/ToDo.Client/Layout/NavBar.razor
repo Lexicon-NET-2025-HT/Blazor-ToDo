@@ -4,9 +4,20 @@
            @NavTitle
         </span>
 
-
-
+        @if(Right is not null)
+        {
+            <div class= "d-flex gap-2">
+               @Right
+            </div>
+        }
     </div>
 </nav>
 
+@code {
 
+    [Parameter]
+    public string NavTitle { get; set; } = "Hej";
+
+    [Parameter]
+    public RenderFragment? Right { get; set; }
+}
