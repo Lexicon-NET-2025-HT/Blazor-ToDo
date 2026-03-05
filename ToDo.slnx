@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ToDo/ToDo.Client/ToDo.Client.csproj" />
+  <Project Path="ToDo/ToDo/ToDo.csproj" />
+</Solution>
