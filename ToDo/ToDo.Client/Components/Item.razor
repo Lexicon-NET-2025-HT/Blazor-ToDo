@@ -1,0 +1,21 @@
+﻿<li class="list-group-item d-flex align-items-center justify-content-between py-3"
+    data-id="1">
+    <div class="d-flex align-items-center gap-3">
+        <input class="form-check-input m-0" type="checkbox" checked="@ToDoItem.Completed">
+        <div>
+            <div class="fw-medium @(ToDoItem.Completed ? "text-decoration-line-through" : "")">@ToDoItem.Text</div>
+            <div class="small text-secondary">@ToDoItem.Created</div>
+        </div>
+    </div>
+
+    <button class="btn btn-outline-danger btn-sm" type="button">
+        Delete
+    </button>
+</li>
+
+@code {
+
+    [Parameter]
+    public ToDoItem ToDoItem { get; set; } = default!;
+
+}
