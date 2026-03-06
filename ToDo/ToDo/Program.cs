@@ -1,4 +1,5 @@
 using ToDo.Client.Pages;
+using ToDo.Client.State;
 using ToDo.Components;
 
 namespace ToDo;
@@ -12,6 +13,8 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveWebAssemblyComponents();
+
+        builder.Services.AddSingleton<ToDoState>();
 
         var app = builder.Build();
 

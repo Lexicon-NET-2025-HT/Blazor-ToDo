@@ -11,14 +11,21 @@
 
     private List<ToDoItem> _toDoItems = default!;
 
+    [Inject]
+    public ToDoState State { get; set; } = null!;
+
+
     protected override void OnInitialized()
     {
         _toDoItems =
-             [
+                 [
               new(){Text = "Buy bananas", Completed = true, Created = DateTime.Now.AddDays(-2)},
               new(){Text = "Walk the dog"},
               new(){Text = "Coffe",  Created = DateTime.Now.AddDays(-1).AddHours(5)},
-     ];
+
+                 ];
+           
+                 UpdateCount();
     }
 
     private void AddTodo(string text)
@@ -26,6 +33,8 @@
         if (string.IsNullOrWhiteSpace(text)) return;
 
         _toDoItems.Add(new ToDoItem { Text = text.Trim() });
+
+        UpdateCount();
     }
 
     private void DeleteTodo(Guid id)
@@ -35,6 +44,8 @@
         if (item == null) return;
 
         _toDoItems.Remove(item);
+
+        UpdateCount();
     }
 
     private void ToggleToDo(Guid id)
@@ -45,5 +56,7 @@
 
         item.Completed = !item.Completed;
     }
+
+    private void UpdateCount() => State.SetCount(_toDoItems.Count);
 
 }
