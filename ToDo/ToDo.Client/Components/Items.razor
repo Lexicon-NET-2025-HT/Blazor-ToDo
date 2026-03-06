@@ -1,4 +1,6 @@
-﻿<ul class="list-group mt-4">
+﻿ <h4>Total todos: @State.Count</h4>
+
+ <ul class="list-group mt-4">
 
     @foreach (var item in ToDoItems)
     {
@@ -8,6 +10,9 @@
 </ul>
 
 @code {
+
+    [Inject]
+    public ToDoState State { get; set; } = null!;
 
     [Parameter]
     public List<ToDoItem> ToDoItems { get; set; } = [];
