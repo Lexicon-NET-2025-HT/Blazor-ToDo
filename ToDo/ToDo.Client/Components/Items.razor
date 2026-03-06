@@ -2,7 +2,7 @@
 
     @foreach (var item in ToDoItems)
     {
-       <Item ToDoItem="item" OnDelete="OnDelete" OnToggle="OnToggle" />
+       <Item @key="item.Id" ToDoItem="item" OnDelete="OnDelete" OnToggle="OnToggle" />
     }
 
 </ul>
