@@ -2,7 +2,7 @@
 
     @foreach (var item in ToDoItems)
     {
-       <Item ToDoItem="item" OnDelete="OnDelete" />
+       <Item ToDoItem="item" OnDelete="OnDelete" OnToggle="OnToggle" />
     }
 
 </ul>
@@ -14,5 +14,8 @@
 
     [Parameter]
     public EventCallback<Guid> OnDelete { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnToggle { get; set; }
 
 }

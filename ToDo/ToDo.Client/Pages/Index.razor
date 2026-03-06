@@ -4,7 +4,7 @@
 
 <Input OnAdd ="AddTodo"/>
 
-<Items  ToDoItems="_toDoItems" OnDelete="DeleteTodo"/>
+<Items  ToDoItems="_toDoItems" OnDelete="DeleteTodo" OnToggle="ToggleToDo"/>
 
 
 @code {
@@ -35,6 +35,15 @@
         if (item == null) return;
 
         _toDoItems.Remove(item);
+    }
+
+    private void ToggleToDo(Guid id)
+    {
+        var item = _toDoItems.FirstOrDefault(i => i.Id == id);
+
+        if (item == null) return;
+
+        item.Completed = !item.Completed;
     }
 
 }

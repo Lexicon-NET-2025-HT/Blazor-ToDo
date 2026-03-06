@@ -1,7 +1,7 @@
 ﻿<li class="list-group-item d-flex align-items-center justify-content-between py-3"
     data-id="1">
     <div class="d-flex align-items-center gap-3">
-        <input class="form-check-input m-0" type="checkbox" checked="@ToDoItem.Completed">
+        <input class="form-check-input m-0" type="checkbox" checked="@ToDoItem.Completed" @onchange="Toggle">
         <div>
             <div class="fw-medium @(ToDoItem.Completed ? "text-decoration-line-through" : "")">@ToDoItem.Text</div>
             <div class="small text-secondary">@ToDoItem.Created</div>
@@ -21,10 +21,19 @@
     [Parameter]
     public EventCallback<Guid> OnDelete { get; set; }
 
+    [Parameter]
+    public EventCallback<Guid> OnToggle { get; set; }
+
     private async Task Delete()
     {
         if (OnDelete.HasDelegate)
             await OnDelete.InvokeAsync(ToDoItem.Id);
+    }
+
+    private async Task Toggle()
+    {
+        if (OnToggle.HasDelegate)
+            await OnToggle.InvokeAsync(ToDoItem.Id);
     }
 
 }
