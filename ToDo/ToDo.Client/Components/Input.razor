@@ -1,13 +1,15 @@
 ﻿<div class="card shadow-sm mb-4">
     <div class="card-body">
 
-        <form @onsubmit="AddTodo">
+        <EditForm Model="_model" OnValidSubmit="AddTodo">
+            <DataAnnotationsValidator />
+
             <div class="input-group input-group-lg">
-                <input @bind="_input"
-                       type="text"
-                       class="form-control"
-                       placeholder="Add todo..."
-                       autofocus>
+                <InputText @bind-Value="_model.Text"
+                           class="form-control"
+                           placeholder="Add todo..."
+                           autofocus>
+                </InputText>
 
                 <button type="submit"
                         class="btn btn-primary">
@@ -15,7 +17,12 @@
                 </button>
 
             </div>
-        </form>
+
+            <div class="mt-2">
+                <ValidationMessage For="@(() => _model.Text)" />
+            </div>
+
+        </EditForm>
 
         <div class="form-text mt-2">
             Write something and click Add.
@@ -26,7 +33,7 @@
 
 @code {
 
-    private string _input = string.Empty;
+    private AddToDoItem _model = new();
 
     [Parameter]
     public EventCallback<string> OnAdd { get; set; }
@@ -35,9 +42,9 @@
     {
 
         if (OnAdd.HasDelegate)
-            await OnAdd.InvokeAsync(_input);
+            await OnAdd.InvokeAsync(_model.Text);
 
-        _input = string.Empty;
+        _model.Text = string.Empty;
     }
 
 }
