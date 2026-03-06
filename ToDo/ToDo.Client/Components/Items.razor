@@ -2,7 +2,7 @@
 
     @foreach (var item in ToDoItems)
     {
-       <Item ToDoItem="item" />
+       <Item ToDoItem="item" OnDelete="OnDelete" />
     }
 
 </ul>
@@ -12,15 +12,7 @@
     [Parameter]
     public List<ToDoItem> ToDoItems { get; set; } = [];
 
-   
+    [Parameter]
+    public EventCallback<Guid> OnDelete { get; set; }
 
-    // protected override void OnParametersSet()
-    // {
-    //     base.OnParametersSet();
-    // }
-
-    // protected override void OnAfterRender(bool firstRender)
-    // {
-    //     base.OnAfterRender(firstRender);
-    //}
 }
