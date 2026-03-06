@@ -4,7 +4,6 @@
         <div class="input-group input-group-lg">
             <input
                    @bind = "_input"
-                   @bind:event="oninput"
                    type="text"
                    class="form-control"
                    placeholder="Add todo..."
@@ -24,20 +23,21 @@
     </div>
 </div>
 
-<h4>@_input</h4>
-
 
 @code {
 
     private string _input = string.Empty;
 
-    private void AddTodo()
+    [Parameter]
+    public EventCallback<string> OnAdd { get; set; }
+
+    private async Task AddTodo()
     {
-        if (string.IsNullOrWhiteSpace(_input)) return;
 
-        //Parent need to get information of whats typed in
-        //And add ToTo to component
-
+        if (OnAdd.HasDelegate)
+            await OnAdd.InvokeAsync(_input);
+       
         _input = string.Empty;
     }
+
 }
